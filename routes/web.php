@@ -28,3 +28,4 @@ $router->post('/farger', 'ColorController@post');
 // Todo!
 $router->get('/ToDo', 'TodoController@show');
 $router->post('/ToDo', 'TodoController@add');
+$router->delete('/ToDo', 'TodoController@remove');
