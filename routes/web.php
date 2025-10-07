@@ -13,11 +13,8 @@
 |
 */
 
-$router->get('/', function () use ($router) {
+$router->get('/', function() use ($router) {
     return view('welcome');
-});
-$router->get('/{id:(?!farger$)}', function ($id) use ($router) {
-    return view('hello', ['namn' => $id]);
 });
 
 // Hantering av färger på webbsidan
@@ -26,7 +23,16 @@ $router->get('/farger/{back}[/{front}]', 'ColorController@withParams');
 $router->post('/farger', 'ColorController@post');
 
 // Todo!
-$router->get('/ToDo', 'TodoController@show');
-$router->post('/ToDo', 'TodoController@add');
-$router->delete('/ToDo', 'TodoController@remove');
-$router->put('/ToDo', 'TodoController@update');
+$router->get('/todo', 'TodoController@show');
+$router->post('/todo', 'TodoController@add');
+$router->delete('/todo', 'TodoController@remove');
+$router->put('/todo', 'TodoController@update');
+
+// Fallback rutt
+$router->get('/{id}', function($id) use ($router) {
+    $reserved = ['todo', 'farger'];
+    if (in_array(strtolower($id), $reserved)) {
+        return redirect('/' . strtolower($id));
+    }
+    return view('hello', ['namn' => $id]);
+});

@@ -1,1 +1,37 @@
-{"3":{"id":3,"text":"Cykla","done":true},"4":{"id":4,"text":"Hoppa","done":false},"6":{"id":6,"text":"Andas","done":true},"7":{"id":7,"text":"Andas","done":false}}
+{
+    "3": {
+        "id": 3,
+        "text": "Cykla",
+        "done": true
+    },
+    "4": {
+        "id": 4,
+        "text": "Hoppa",
+        "done": false
+    },
+    "6": {
+        "id": 6,
+        "text": "Andas",
+        "done": true
+    },
+    "7": {
+        "id": 7,
+        "text": "Andas",
+        "done": false
+    },
+    "8": {
+        "id": 8,
+        "text": "Äta",
+        "done": false
+    },
+    "9": {
+        "id": 9,
+        "text": "Äta",
+        "done": true
+    },
+    "10": {
+        "id": 10,
+        "text": "Äta",
+        "done": false
+    }
+}

@@ -72,6 +72,7 @@ $app->configure('view');
 |
 */
 
+$app->middleware([App\Http\Middleware\LowerCaseUrls::class]);
 // $app->middleware([
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);
