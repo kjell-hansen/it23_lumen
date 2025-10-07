@@ -4,6 +4,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Todo-lista</title>
+        <style>
+            form {
+                display: inline-block;
+            }
+        </style>
     </head>
     <body>
         <h1>Todo-lista</h1>
@@ -18,6 +23,12 @@
             <ul>
                 @foreach($lista as $uppgift)
                     <li>
+                        <form method="POST">
+                            <input type="checkbox" name="done" {{$uppgift->done ? 'checked':''}}
+                            value="true" onchange="submit()">
+                            <input type="hidden" name="uppgift" value="{{$uppgift->id}}">
+                            <input type="hidden" name="_method" value="PUT">
+                        </form>
                         <form method="POST">
                             {{$uppgift->id}} {{$uppgift->text}}
                             <input type="hidden" name="uppgift" value="{{$uppgift->id}}">
