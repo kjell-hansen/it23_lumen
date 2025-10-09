@@ -14,11 +14,13 @@ class UserController extends Controller {
 
     }
     function show() {
-        return View::make('user');
+        $lista=$this->repo->all();
+        return View::make('user', ['lista'=>$lista]);
     }
 
     function add(Request $request) {
         $user=User::factory()->make($request->request->all());
         $this->repo->add($user);
+        return redirect('/anvandare');
     }
 }
