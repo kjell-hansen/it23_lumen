@@ -28,9 +28,14 @@ $router->post('/todo', 'TodoController@add');
 $router->delete('/todo', 'TodoController@remove');
 $router->put('/todo', 'TodoController@update');
 
+// Användare
+$router->get('/anvandare', 'UserController@show');
+$router->post('/anvandare', 'UserController@add');
+
+
 // Fallback rutt
 $router->get('/{id}', function($id) use ($router) {
-    $reserved = ['todo', 'farger'];
+    $reserved = ['todo', 'farger', 'anvandare'];
     if (in_array(strtolower($id), $reserved)) {
         return redirect('/' . strtolower($id));
     }
