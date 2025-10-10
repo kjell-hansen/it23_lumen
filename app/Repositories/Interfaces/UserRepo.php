@@ -38,4 +38,11 @@ interface UserRepo {
      * @return void
      */
     public function delete(string $id):void;
+
+    /**
+     * Returnerar en användare baserat på epost
+     * @param string $email
+     * @return User|null
+     */
+    public function getUserByEmail(string $email):?User;
 }

@@ -34,6 +34,10 @@ $router->get('/anvandare/{id}', 'UserController@showUser');
 $router->post('/anvandare/{id}', 'UserController@modifyUser');
 $router->post('/anvandare', 'UserController@add');
 
+// Inloggning
+$router->get('/login', 'LoginController@show');
+$router->post('/login', 'LoginController@login');
+
 
 // Fallback rutt
 $router->get('/{id}', function($id) use ($router) {

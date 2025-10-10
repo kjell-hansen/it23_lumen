@@ -64,4 +64,13 @@ class JsonUserRepo implements UserRepo {
         unset ($this->data[$id]);
         $this->file->write($this->data);
     }
+
+    public function getUserByEmail(string $email):?User {
+        foreach ($this->data as $user) {
+            if (strtolower($user->epost) === strtolower($email)) {
+                return $user;
+            }
+        }
+        return null;
+    }
 }
