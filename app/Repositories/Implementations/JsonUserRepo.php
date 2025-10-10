@@ -8,14 +8,15 @@ use App\Storage\JsonDbConnection;
 use App\Storage\JsonFileHandler;
 
 class JsonUserRepo implements UserRepo {
-private array $data;
-private JsonFileHandler $file;
+    private array $data;
+    private JsonFileHandler $file;
+
     public function __construct(JsonDbConnection $dbConnection) {
-        $this->data=[];
-        $this->file=new JsonFileHandler('users', $dbConnection);
-        $data=$this->file->read();
+        $this->data = [];
+        $this->file = new JsonFileHandler('users', $dbConnection);
+        $data = $this->file->read();
         foreach ($data as $item) {
-            $this->data[$item['id']]=new User($item);
+            $this->data[$item['id']] = new User($item);
         }
     }
 
@@ -23,7 +24,7 @@ private JsonFileHandler $file;
      * @inheritDoc
      */
     public function all():array {
-        return  $this->data;
+        return $this->data;
     }
 
     /**
@@ -37,12 +38,15 @@ private JsonFileHandler $file;
      * @inheritDoc
      */
     public function add(User $user):void {
-        if($user->id===0) {
-            $ids=array_keys($this->data);
-            $nextId=empty($ids) ? 1 : max($ids) +1;
-            $user->id=$nextId;
+        if ($user->id === 0) {
+            $ids = array_keys($this->data);
+            $nextId = empty($ids) ? 1 : max($ids) + 1;
+            $user->id = $nextId;
+            if ($user->id === 1) {
+                $user->admin = 1;
+            }
         }
-        $this->data[$user->id]=$user;
+        $this->data[$user->id] = $user;
         $this->file->write($this->data);
     }
 
