@@ -6,8 +6,8 @@
     },
     "6": {
         "id": 6,
-        "text": "Andas",
-        "done": true
+        "text": "Andas djupare",
+        "done": false
     },
     "7": {
         "id": 7,
@@ -31,7 +31,12 @@
     },
     "11": {
         "id": 11,
+<<<<<<< HEAD
         "text": null,
         "done": false
+=======
+        "text": "Andas in, andas ut",
+        "done": true
+>>>>>>> 4e06eab45773fbe8c42c2a8c61647ff38ba880d9
     }
 }
