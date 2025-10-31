@@ -21,13 +21,14 @@
         <form method="post">
             <label>
                 Epost:
-                <input type="email" name="epost" placeholder="Ange epost" required>
+                <input type="email" name="epost" placeholder="Ange epost" required value="{{ $epost ?? '' }}">
             </label>
             <label>
                 Lösenord:
                 <input type="password" name="losenord" required>
             </label>
-            <input type="submit" value="Logga in">
+            <input type="submit" name="action" value="Logga in">
+            <input type="submit" name="action" value="Skapa konto">
         </form>
     </body>
 </html>

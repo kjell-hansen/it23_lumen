@@ -40,7 +40,6 @@ $router->group(['middleware' => 'auth.user'], function() use ($router) {
 $router->get('/login', 'LoginController@show');
 $router->post('/login', 'LoginController@login');
 
-
 // Fallback rutt
 $router->get('/{id}', function($id) use ($router) {
     $reserved = ['todo', 'farger', 'anvandare'];

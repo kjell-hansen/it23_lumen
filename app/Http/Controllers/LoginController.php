@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Login;
+use App\Models\User;
 use App\Services\AuthenticationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 
 class LoginController extends Controller {
@@ -30,5 +32,27 @@ class LoginController extends Controller {
             // Misslyckad inloggning
             return View::make('login', ['message' => 'Fel epost eller lösenord']);
         }
+    }
+    public function register(Request $request, AuthenticationService $auth) {
+        // Validera input
+        $validated = $request->validate([
+            'namn' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string', // kräver password_confirmation
+        ]);
+
+        // Skapa användare i databasen
+        $user = User::create([
+            'namn' => $validated['namn'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        // Logga in användaren automatiskt efter registrering
+        $request->session()->put('user_id', $user->id);
+        $request->session()->save();
+
+        // Skicka användaren till sin profilsida
+        return redirect("/{$user->namn}");
     }
 }
