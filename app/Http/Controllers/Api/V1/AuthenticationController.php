@@ -28,7 +28,7 @@ class AuthenticationController extends Controller {
             'refresh_token',
             $refreshToken,
             time() + env('REFRESH_TTL', 2592000),
-            '/api/v1/refresh',
+            'refresh',
             null,
             $secure,
             true,
@@ -52,7 +52,7 @@ class AuthenticationController extends Controller {
         $user = $this->auth->validateRefreshTokenAndGetUser($cookie);
         if (!$user) {
             $clear = Cookie::create(
-                'refresh_token', '', -1, "/api/v1/refresh",
+                'refresh_token', '', -1, "refresh",
                 null, false, true
             );
             return response()->json(['error' => 'Invalid refresh token'])->withCookie($clear);
@@ -67,7 +67,7 @@ class AuthenticationController extends Controller {
             'refresh_token',
             $newRefresh,
             time() + env('REFRESH_TTL', 2592000),
-            '/api/v1/refresh',
+            'refresh',
             null,
             $secure,
             true,
@@ -92,7 +92,7 @@ class AuthenticationController extends Controller {
         }
 
         $clear = Cookie::create(
-            'refresh_token', '', -1, "/api/v1/refresh",
+            'refresh_token', '', -1, "refresh",
             null, false, true
         );
         return response()->json(['logged out' => true])->withCookie($clear);
