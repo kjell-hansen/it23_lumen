@@ -2,23 +2,28 @@
 
 namespace App\Models;
 
-class Login {
+class Login
+{
     private string $epost;
     private string $losenord;
 
-    public static function create(array $attributes):self {
+    public static function create(array $attributes): self
+    {
         return new self($attributes);
     }
 
-    private function __construct(array $attributes) {
-        $this->epost=$attributes['epost'];
-        $this->losenord=$attributes['losenord'];
+    private function __construct(array $attributes)
+    {
+        $this->epost = $attributes['epost'];
+        $this->losenord = $attributes['losenord'];
     }
 
-    public function getLosenord():string {
+    public function getLosenord(): string
+    {
         return $this->losenord;
     }
-    public function getEpost(): string{
+    public function getEpost(): string
+    {
         return $this->epost;
     }
 }

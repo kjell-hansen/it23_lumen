@@ -8,18 +8,23 @@ use App\Repositories\Interfaces\UppgiftRepo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
-class TodoController extends Controller {
+class TodoController extends Controller
+{
 
-    public function __construct(private UppgiftRepo $repo) {}
+    public function __construct(private UppgiftRepo $repo)
+    {
+    }
 
-    function show() {
+    function show()
+    {
         //        $lista = ['Cykla', "Sova", 'Andas', "Äta"];
         $lista = $this->repo->all();
 
         return View::make('todo', ['lista' => $lista]);
     }
 
-    function add(Request $request) {
+    function add(Request $request)
+    {
         // Läs från formuläret
         $text = $request->request->get('uppgift');
         // Skapa ny uppgift
@@ -31,14 +36,16 @@ class TodoController extends Controller {
         return redirect('/ToDo');
     }
 
-    function remove(Request $request) {
+    function remove(Request $request)
+    {
         $id = $request->request->get('uppgift');
         $this->repo->delete($id);
 
         return redirect('/ToDo');
     }
 
-    function update(Request $request) {
+    function update(Request $request)
+    {
         $id = $request->request->get('uppgift');
         $uppgift = $this->repo->get($id);
         $uppgift->done = !$uppgift->done;

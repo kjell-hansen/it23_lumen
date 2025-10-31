@@ -13,7 +13,7 @@
 |
 */
 
-$router->get('/', function() use ($router) {
+$router->get('/', function () use ($router) {
     return view('welcome');
 });
 
@@ -29,7 +29,7 @@ $router->delete('/todo', 'TodoController@remove');
 $router->put('/todo', 'TodoController@update');
 
 // Användare
-$router->group(['middleware' => 'auth.user'], function() use ($router) {
+$router->group(['middleware' => 'auth.user'], function () use ($router) {
     $router->get('/anvandare', 'UserController@show');
     $router->get('/anvandare/{id}', 'UserController@showUser');
     $router->post('/anvandare/{id}', 'UserController@modifyUser');
@@ -42,10 +42,12 @@ $router->post('/login', 'LoginController@login');
 
 
 // Fallback rutt
-$router->get('/{id}', function($id) use ($router) {
+$router->get('/{id}', function ($id) use ($router) {
     $reserved = ['todo', 'farger', 'anvandare'];
     if (in_array(strtolower($id), $reserved)) {
         return redirect('/' . strtolower($id));
     }
     return view('hello', ['namn' => $id]);
+
+
 });
